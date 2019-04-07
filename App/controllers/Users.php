@@ -7,6 +7,22 @@ class Users extends Controller {
         $this->view('users/login');
     }
 
+    # Login user
+    public function loginUser() {
+        # Checking if the login-button is submited
+        if(isset($_POST['login-button'])) {
+            # Storing the user's values from the input
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            
+            # Creating new object for the user model
+            $usersModel = $this->model('User');
+            
+            # Checking for the user
+            $usersModel->loginUser($email, $password);
+        }
+    }
+
 }
 
 
