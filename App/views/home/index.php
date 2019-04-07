@@ -8,7 +8,8 @@ echo '<p>' . $value1 . '</p>';
 
 # Second value form the home/index (should print 'Hello from Home/Index')
 $value2 = $data['value2'];
-echo '<p>' . $value2 . '</p>';
+echo '<p class="big-margin-bottom">' . $value2 . '</p>';
+
 
 
 
