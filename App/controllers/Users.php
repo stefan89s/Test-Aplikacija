@@ -23,6 +23,14 @@ class Users extends Controller {
         }
     }
 
+    # Log out user
+    public function logout() {
+        if(isset($_POST['user-logout'])) {
+            session_destroy();
+            header('Location: ' . ROOT_PATH);
+        }
+    }
+
 }
 
 

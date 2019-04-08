@@ -29,16 +29,14 @@
         
         # If user exist in the database
         if($user && $user['password'] == $password) {
-            # Starting the session
-            session_start();
-
             # Setting the session
             $_SESSION['user-info'] = [
                 'id' => $user['id'],
                 'username' => $user['username'],
                 'log-in' => true
             ];
-            header('Location: ' . ROOT_PATH . "users/index?seccess");
+            
+            header('Location: ' . ROOT_PATH);
         } else {
             # If user's input doesn't match, back the user on the login page with the error
             header('Location: ' . ROOT_PATH . "users/index?error=invalid-input");

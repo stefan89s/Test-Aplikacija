@@ -1,5 +1,8 @@
 <?php
 
+# Starting the session
+session_start();
+
 # Require the initialization file which is containing files
 # from the 'classes' folder which are framing the Application
 require 'App/init.php';
