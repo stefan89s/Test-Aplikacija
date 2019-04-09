@@ -11,7 +11,24 @@
     color: whitesmoke;
 }
 
+.article-box {
+    height: 12em;
+    background-color: rgb(213, 250, 202);
+    border: 1px solid green;
+}
 
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination-links {
+    margin: 0.5em;
+}
+
+.active-page {
+    color: red;
+}
 
 
 

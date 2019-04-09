@@ -6,10 +6,12 @@ class Articles extends Controller {
     public function index() {
         $articleModel = $this->model('Article');
         $articles = $articleModel->selectAllArticles();
+        $articlesPerPage = $articleModel->articlesPerPage();
 
         # Passing all articles into a view
         $this->view('articles/index', [
-            'articles' => $articles
+            'articles' => $articles,
+            'articlesPerPage' => $articlesPerPage
         ]);
     }
 

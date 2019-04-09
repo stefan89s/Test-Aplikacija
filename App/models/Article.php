@@ -10,6 +10,25 @@ class Article extends Model {
         return $this->fetchAll();
     }
 
+    # Articles per single page
+    public function articlesPerPage() {
+        $resultPerPage = 4;
+        $numberOfResults = count($this->selectAllArticles());
+
+        if(!isset($_GET['page'])) {
+            $page = 1;
+        } else {
+            $page = $_GET['page'];
+        }
+
+        $thisPageFirstResult = ($page - 1) * $resultPerPage;
+
+        $query = "SELECT * FROM articles LEFT JOIN users
+                  ON users.id = articles.user_id LIMIT " .$thisPageFirstResult . ', ' . $resultPerPage;
+        $this->query($query);
+        return $this->fetchAll();
+    }
+
     # Store the article
     public function storeArticle($title, $slug, $userId, $article) {
         # SQL Statement for storing the article
