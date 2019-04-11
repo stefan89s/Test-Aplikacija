@@ -1,6 +1,12 @@
 <?php
 
-# Storing all articles into a new article variable
+# Articles stored in JSON
+$allArticlesJSON = $data['allArticlesJSON'];
+
+# Decoded articles received through JSON
+$decodedArticles = json_decode($allArticlesJSON);
+
+# Storing all articles into a new article variable (decoded articles could be used as well)
 $articles = $data['articles'];
 
 # Articles per single page 
@@ -41,7 +47,8 @@ if($numbersOfPages > 5) {
 <?php foreach($articlesPerPage as $article) : ?>
     <div class="col-md-3 article-box">
     <h3><a href="<?php echo ROOT_PATH ?>articles/show/<?php echo $article['slug']; ?>"><?php echo $article['title']; ?></a></h3>
-    <h5>Author: <?php echo $article['username']; ?></h5>
+    <img class="img-responsive article-image" src="<?php echo ROOT_PATH ?>App/assets/article<?php echo $article['id'] ?>.jpg" alt="">
+    <h5 class="mt-2">Author: <?php echo $article['username']; ?></h5>
     </div>
 <?php endforeach; ?>
 </div>
@@ -56,13 +63,14 @@ if($numbersOfPages > 5) {
     
     <?php if($pageMax <= $pageMin + 5) : ?>
     <?php 
-        
+
         $pageMin2 = $_GET['page'] - 2; 
         $pageMax = $pageMin + 3; 
         if($pageMin + 3 > $numbersOfPages) {
             $pageMax = $numbersOfPages;
             $pageMin2 = $numbersOfPages - 5;
         }
+        
     ?>
     <?php for($currPage = $pageMin2; $currPage <= $pageMax; $currPage++): ?>
     <?php if($currPage > 0) : ?>

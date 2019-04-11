@@ -8,11 +8,25 @@ class Articles extends Controller {
         $articles = $articleModel->selectAllArticles();
         $articlesPerPage = $articleModel->articlesPerPage();
 
+        # The articles stored in JSON
+        $allArticlesJSON = $articleModel->selectAllArticlesJSON();
+
         # Passing all articles into a view
         $this->view('articles/index', [
             'articles' => $articles,
-            'articlesPerPage' => $articlesPerPage
+            'articlesPerPage' => $articlesPerPage,
+            'allArticlesJSON' => $allArticlesJSON
         ]);
+    }
+
+    # Returning only JSON articles
+    public function articlesJSON() {
+        header('Access-Control-Allow-Origin: *');
+        header('Content-Type: application/json');
+
+        $articleModel = $this->model('Article');
+        $allArticles = $articleModel->selectAllArticles();
+        return json_encode($data);
     }
 
     # Create the article page
@@ -31,6 +45,13 @@ class Articles extends Controller {
             $articleModel = $this->model('Article');
             $articleModel->storeArticle($title, $slug, $userId, $article);
         }
+    }
+
+    # Store decoded article from JSON
+    public function storeArticleJSON() {
+        $data = json_decode(file_get_contents("php://input"));
+        $articleModel = $this->model('Article');
+        $articleModel->storeArticleJSON($data);
     }
 
     # Show the single article
@@ -64,6 +85,13 @@ class Articles extends Controller {
         }
     }
 
+    # Update the decoded article from JSON
+    public function updateArticleJSON() {
+        $data = json_decode(file_get_contents("php://input"));
+        $articleModel = $this->model('Article');
+        $articleModel->updateArticleJSON($data);
+    }
+
     # Delete the article page
     public function delete() {
         $articleModel = $this->model('Article');
@@ -80,6 +108,14 @@ class Articles extends Controller {
             $articleModel = $this->model('Article');
             $articleModel->deleteArticle($articleId);
         }
+    }
+
+    # Delete the article through JSON
+    public function destroyArticleJSON() {
+        $data = json_decode(file_get_contents("php://input"));
+        $articleId = $data->article_id;
+        $articleModel = $this->model('Article');
+        $articleModel->deleteArticleJSON($articleId);
     }
 
 }

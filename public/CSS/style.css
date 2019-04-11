@@ -12,9 +12,8 @@
 }
 
 .article-box {
-    height: 12em;
-    background-color: rgb(213, 250, 202);
-    border: 1px solid green;
+    background-color: rgb(231, 245, 227);
+    border: 1px solid greenyellow;
 }
 
 .pagination {
@@ -28,6 +27,11 @@
 
 .active-page {
     color: red;
+}
+
+.article-image {
+    width: 100%;
+    object-fit: cover;
 }
 
 

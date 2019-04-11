@@ -7,6 +7,7 @@ $article = $data['article'];
     <div class="col-md-10">
         <h3><?php echo $article['title']; ?></h3>
         <p><?php echo $article['article']; ?></p>
+        <img class="img-responsive article-image" src="<?php echo ROOT_PATH ?>App/assets/article<?php echo $article['id'] ?>.jpg" alt="">
         <div class="row">
             <div class="col-md-6">
                 <p><strong><?php echo $article['username']; ?></strong></p>
